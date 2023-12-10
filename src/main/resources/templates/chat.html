@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Chat</title>
+		<style>
+			* {
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+					Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+					sans-serif;
+			}
+			.chats {
+				margin-top: 24px;
+				display: flex;
+				flex-direction: column-reverse;
+				gap: 12px;
+			}
+			.chat-wrapper {
+				display: flex;
+				flex-direction: column;
+				background-color: #daf1ff;
+				padding: 4px 12px;
+				border-radius: 4px;
+				max-width: 400px;
+			}
+			.username {
+				font-size: 12px;
+				margin-bottom: 4px;
+				color: darkblue;
+			}
+			.message {
+				margin-bottom: 4px;
+			}
+			.message.shout {
+				text-transform: uppercase;
+			}
+			.message.whisper {
+				text-transform: lowercase;
+			}
+			p {
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<form
+			action="#"
+			method="POST"
+			th:action="@{'/chat'}"
+			th:object="${messageForm}">
+			<label for="messageText">Message Text:</label>
+			<input
+				id="messageText"
+				type="text"
+				name="messageText"
+				th:field="*{messageText}" />
+			<input type="submit" />
+		</form>
+
+		<div class="chats">
+			<div class="chat-wrapper" th:each="msg: ${messages}">
+				<p class="username" th:text="${msg.username}"></p>
+				<p class="message" th:text="${msg.messageText}"></p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Spring MVC Home Page</h1>
+    <p>Templating Engine Thymeleaf</p>
+    <p>Author: <span th:text="${authorName}"></span></p>
+    <p>Time: <span th:text="${timeInstance}"></span></p>
+    <div>
+        <p>Pages</p>
+        <ol>
+            <li th:each="page : ${pages}" th:text="${page}" th:unless="${page.contains('Contact')}"></li>
+        </ol>
+    </div>
+    <form action="#" th:object="${newMessage}" th:action="@{'/home'}" method="POST">
+        <input th:field="*{text}" type="text" placeholder="Type text" />
+        <input type="submit" value="Send" />
+    </form>
+</body>
+</html>

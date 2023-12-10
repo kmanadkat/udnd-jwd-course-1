@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Controller Exercise</title>
+</head>
+<body>
+    <h2>Animals</h2>
+    <form action="#" th:object="${animalMessage}" th:action="@{'/exercise'}" method="POST">
+        <label for="animalText">Enter an Animal: </label>
+        <input type="text" id="animalText" name="animalText" th:field="*{animalText}">
+        <label for="adjective">Enter an Adjective:</label>
+        <input type="text" id="adjective" name="adjective" th:field="*{adjective}">
+        <input type="submit">
+    </form>
+    <div>
+        <ol th:if="${animals.size() < 5}">
+            <li th:each="animal : ${animals}">
+                <span>Name: <span th:text="${animal.animalText}"></span></span>
+                <span>Adjective: <span th:text="${animal.adjective}"></span></span>
+            </li>
+        </ol>
+    </div>
+    <p th:unless="${animals.size() < 5}">I think that's enough!</p>
+</body>
+</html>
